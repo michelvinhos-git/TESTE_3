@@ -5,106 +5,259 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rio de Janeiro</title>
   <style>
+    :root {
+      --azul: #0d3b66;
+      --verde: #1bbf71;
+      --amarelo: #ffd54a;
+      --fundo: #07111f;
+      --superficie: rgba(10, 20, 35, 0.82);
+      --texto: #edf4ff;
+      --muted: #c5d2e9;
+      --borda: rgba(255, 255, 255, 0.12);
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f4f4;
-      color: #222;
+      color: var(--texto);
+      background:
+        radial-gradient(circle at top, rgba(27, 191, 113, 0.15), transparent 24%),
+        linear-gradient(135deg, #06111f 0%, #0c1d31 45%, #13253d 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(1200px, calc(100% - 24px));
+      margin: 0 auto;
+      padding-bottom: 36px;
     }
 
     header {
-      background: linear-gradient(135deg, #009c3b 0%, #00b33c 50%, #ffcc00 100%);
-      color: #1a1a00;
-      text-align: center;
-      padding: 48px 20px 36px;
+      padding: 28px 0 10px;
     }
 
-    header h1 {
-      font-size: 2.8rem;
-      letter-spacing: 1px;
-      color: #fff;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: stretch;
+      background: linear-gradient(145deg, rgba(13, 59, 102, 0.95), rgba(7, 17, 31, 0.98));
+      border: 1px solid var(--borda);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
     }
 
-    header p {
-      margin-top: 8px;
-      font-size: 1.1rem;
-      color: #fff;
-      opacity: 0.9;
+    .hero-copy {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .btn-whatsapp {
+    .badge {
       display: inline-flex;
       align-items: center;
+      width: fit-content;
       gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.92rem;
+      color: #d8ebff;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .hero h1 {
+      margin-top: 14px;
+      font-size: clamp(2.6rem, 8vw, 4.2rem);
+      line-height: 1.02;
+      color: #fff;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 560px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #eff6ff;
+      font-size: 0.95rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
       margin-top: 20px;
-      padding: 12px 28px;
-      background: #ffcc00;
-      color: #1a1a00;
-      font-weight: 700;
-      font-size: 1rem;
-      border-radius: 50px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 14px;
       text-decoration: none;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-      transition: background 0.2s, transform 0.15s;
+      font-weight: 700;
+      transition: transform .15s ease, opacity .2s ease;
     }
 
-    .btn-whatsapp:hover {
-      background: #ffe033;
-      transform: translateY(-2px);
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--amarelo), #ffe88b);
+      color: #14304b;
+      box-shadow: 0 10px 20px rgba(255, 213, 74, 0.22);
     }
 
-    .btn-whatsapp svg {
-      width: 20px;
-      height: 20px;
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: #fff;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 340px;
+      background:
+        linear-gradient(rgba(7, 17, 31, 0.25), rgba(7, 17, 31, 0.45)),
+        url('https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+    }
+
+    .hero-visual::after {
+      content: "Praia · Cristo · Cidade";
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(7, 17, 31, 0.78);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.95rem;
+      color: #edf4ff;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat-card {
+      background: var(--superficie);
+      border: 1px solid var(--borda);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    section { margin-top: 18px; }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 {
+      font-size: 1.25rem;
+      color: #fff;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     .photos {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      padding: 32px 40px;
-      justify-content: center;
-      flex-wrap: wrap;
     }
 
-    .photos img {
-      width: 480px;
-      height: 300px;
+    .photo-card {
+      background: var(--superficie);
+      border: 1px solid var(--borda);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 190px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      display: block;
     }
 
-    .photos figcaption {
-      text-align: center;
-      margin-top: 8px;
+    .photo-card figcaption {
+      padding: 10px 12px 12px;
+      color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .photo-card small {
+      display: block;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 4px;
       font-size: 0.9rem;
-      color: #555;
     }
 
     .info {
-      max-width: 900px;
-      margin: 0 auto 48px;
-      padding: 0 24px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
 
     .card {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      background: var(--superficie);
+      border: 1px solid var(--borda);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
     }
 
-    .card h2 {
-      font-size: 1.1rem;
-      color: #002776;
-      margin-bottom: 12px;
-      border-bottom: 2px solid #009c3b;
-      padding-bottom: 6px;
+    .card h3 {
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 10px;
     }
 
     .card ul {
@@ -114,64 +267,96 @@
       gap: 8px;
     }
 
-    .card ul li {
+    .card li {
+      color: var(--muted);
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
-    .card ul li span {
-      font-weight: 600;
-      color: #002776;
+    .card li span {
+      color: #fff;
+      font-weight: 700;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      font-size: 0.85rem;
-      color: #888;
-      background: #e8e8e8;
+      padding: 18px 8px 4px;
+      color: #b7c8e4;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .photos { grid-template-columns: 1fr 1fr; }
+      .info { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 700px) {
-      .info { grid-template-columns: 1fr; }
-      .photos img { width: 100%; height: 220px; }
-      header h1 { font-size: 2rem; }
+      .page-shell { width: min(100% - 12px, 1200px); }
+      .hero-copy { padding: 18px; }
+      .hero h1 { font-size: 2.15rem; }
+      .stats, .photos { grid-template-columns: 1fr; }
+      .section-title { align-items: start; flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Rio de Janeiro</h1>
-    <p>A Cidade Maravilhosa</p>
-    <a class="btn-whatsapp" href="https://wa.me/5521989014962" target="_blank" rel="noopener">
-      <svg viewBox="0 0 32 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.478.648 4.804 1.782 6.82L2 30l7.38-1.758A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 01-5.838-1.604l-.418-.248-4.378 1.044 1.066-4.26-.272-.434A11.46 11.46 0 014.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.614c-.344-.172-2.036-1.004-2.352-1.118-.316-.114-.546-.172-.776.172-.23.344-.89 1.118-1.09 1.348-.2.23-.4.258-.744.086-.344-.172-1.452-.536-2.766-1.708-1.022-.914-1.712-2.042-1.912-2.386-.2-.344-.022-.53.15-.702.154-.154.344-.4.516-.6.172-.2.23-.344.344-.574.114-.23.058-.43-.028-.602-.086-.172-.776-1.872-1.064-2.562-.28-.672-.564-.58-.776-.59l-.66-.012c-.23 0-.602.086-.918.43s-1.204 1.176-1.204 2.868 1.232 3.328 1.404 3.558c.172.23 2.426 3.706 5.878 5.196.822.354 1.464.566 1.964.724.824.262 1.574.226 2.168.138.66-.1 2.036-.832 2.324-1.636.286-.804.286-1.494.2-1.636-.084-.144-.314-.23-.658-.4z"/>
-      </svg>
-      Fale Conosco
-    </a>
-  </header>
+  <div class="page-shell">
+    <header>
+      <article class="hero">
+        <div class="hero-copy">
+          <span class="badge">Rio de Janeiro • Brasil</span>
+          <h1>Explore a cidade que pulsa ao som do mar.</h1>
+          <p>O Rio combina paisagens icônicas, cultura vibrante e uma energia única — do Cristo Redentor à Praia de Copacabana.</p>
+          <div class="chip-row">
+            <span class="chip">Cristo Redentor</span>
+            <span class="chip">Copacabana</span>
+            <span class="chip">Pão de Açúcar</span>
+            <span class="chip">Carnaval</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/5521989014962" target="_blank" rel="noopener">Fale com a equipe</a>
+            <a class="btn btn-secondary" href="#info">Ver curiosidades</a>
+          </div>
+          <div class="stats">
+            <article class="stat-card"><strong>6,7 mi</strong><span>habitantes no município</span></article>
+            <article class="stat-card"><strong>13 mi</strong><span>na região metropolitana</span></article>
+            <article class="stat-card"><strong>2016</strong><span>Olimpíadas na cidade</span></article>
+            <article class="stat-card"><strong>UNESCO</strong><span>Patrimônio Natural</span></article>
+          </div>
+        </div>
+        <aside class="hero-visual" aria-label="Paisagem do Rio de Janeiro"></aside>
+      </article>
+    </header>
 
-  <section class="photos">
-    <figure>
-      <img
-        src="https://commons.wikimedia.org/wiki/Special:FilePath/Christ_the_Redeemer_-_Cristo_Redentor.jpg"
-        alt="Cristo Redentor no Rio de Janeiro"
-      />
-      <figcaption>Cristo Redentor — Corcovado</figcaption>
-    </figure>
-    <figure>
-      <img
-        src="https://commons.wikimedia.org/wiki/Special:FilePath/Rio_de_janeiro_copacabana_beach_2010.JPG"
-        alt="Praia de Copacabana"
-      />
-      <figcaption>Praia de Copacabana</figcaption>
-    </figure>
-  </section>
+    <section>
+      <div class="section-title">
+        <div>
+          <h2>O que faz o Rio ser tão especial</h2>
+          <p>Mar, montanhas, cultura e energia urbana em um só lugar.</p>
+        </div>
+      </div>
+      <div class="photos">
+        <figure class="photo-card">
+          <img src="https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?auto=format&fit=crop&w=900&q=80" alt="Cristo Redentor ao pôr do sol" />
+          <figcaption>Cristo Redentor <small>Um dos cartões-postais mais famosos do Brasil</small></figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Praia de Copacabana" />
+          <figcaption>Copacabana <small>Praia vibrante e icônica da cidade</small></figcaption>
+        </figure>
+        <figure class="photo-card">
+          <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80" alt="Pão de Açúcar e vista da cidade" />
+          <figcaption>Pão de Açúcar <small>Vista panorâmica que encanta visitantes</small></figcaption>
+        </figure>
+      </div>
+    </section>
 
-  <section class="info">
+    <section id="info" class="info">
     <div class="card">
-      <h2>Dados Gerais</h2>
+      <h3>Dados Gerais</h3>
       <ul>
         <li><span>Estado:</span> Rio de Janeiro</li>
         <li><span>País:</span> Brasil</li>
@@ -185,7 +370,7 @@
     </div>
 
     <div class="card">
-      <h2>Características</h2>
+      <h3>Características</h3>
       <ul>
         <li>Segunda maior cidade do Brasil</li>
         <li>Ex-capital federal (1763–1960)</li>
@@ -198,7 +383,7 @@
     </div>
 
     <div class="card">
-      <h2>Economia</h2>
+      <h3>Economia</h3>
       <ul>
         <li>2º maior PIB do Brasil (~R$ 400 bi)</li>
         <li>Principal setor: serviços e turismo</li>
@@ -209,7 +394,7 @@
     </div>
 
     <div class="card">
-      <h2>Clima & Natureza</h2>
+      <h3>Clima & Natureza</h3>
       <ul>
         <li><span>Clima:</span> Tropical oceânico</li>
         <li><span>Temperatura média:</span> 23°C</li>
@@ -221,9 +406,10 @@
     </div>
   </section>
 
-  <footer>
-    Página informativa sobre o Rio de Janeiro &mdash; Cidade Maravilhosa
-  </footer>
+    <footer>
+      Página informativa sobre o Rio de Janeiro &mdash; Cidade Maravilhosa
+    </footer>
+  </div>
 
 </body>
 </html>
