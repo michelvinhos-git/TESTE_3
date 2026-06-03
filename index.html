@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rio de Janeiro</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(135deg, #009c3b, #002776);
+      color: white;
+      text-align: center;
+      padding: 48px 20px 32px;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin-top: 8px;
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+
+    .photos {
+      display: flex;
+      gap: 16px;
+      padding: 32px 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .photos img {
+      width: 480px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    .photos figcaption {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .info {
+      max-width: 900px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      color: #002776;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #009c3b;
+      padding-bottom: 6px;
+    }
+
+    .card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card ul li {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .card ul li span {
+      font-weight: 600;
+      color: #002776;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.85rem;
+      color: #888;
+      background: #e8e8e8;
+    }
+
+    @media (max-width: 700px) {
+      .info { grid-template-columns: 1fr; }
+      .photos img { width: 100%; height: 220px; }
+      header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Rio de Janeiro</h1>
+    <p>A Cidade Maravilhosa</p>
+  </header>
+
+  <section class="photos">
+    <figure>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Cristo_Redentor_-_Rio_de_Janeiro%2C_Brasil.jpg/1200px-Cristo_Redentor_-_Rio_de_Janeiro%2C_Brasil.jpg"
+        alt="Cristo Redentor no Rio de Janeiro"
+      />
+      <figcaption>Cristo Redentor — Corcovado</figcaption>
+    </figure>
+    <figure>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Aerial_view_of_Copacabana%2C_Rio_de_Janeiro.jpg/1200px-Aerial_view_of_Copacabana%2C_Rio_de_Janeiro.jpg"
+        alt="Praia de Copacabana"
+      />
+      <figcaption>Praia de Copacabana</figcaption>
+    </figure>
+  </section>
+
+  <section class="info">
+    <div class="card">
+      <h2>Dados Gerais</h2>
+      <ul>
+        <li><span>Estado:</span> Rio de Janeiro</li>
+        <li><span>País:</span> Brasil</li>
+        <li><span>Fundação:</span> 1 de março de 1565</li>
+        <li><span>Área:</span> 1.200 km²</li>
+        <li><span>População:</span> ~6,7 milhões (município)</li>
+        <li><span>Região Metropolitana:</span> ~13 milhões</li>
+        <li><span>Densidade:</span> ~5.500 hab/km²</li>
+        <li><span>Idioma:</span> Português</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Características</h2>
+      <ul>
+        <li>Segunda maior cidade do Brasil</li>
+        <li>Ex-capital federal (1763–1960)</li>
+        <li>Sede do maior carnaval do mundo</li>
+        <li>Patrimônio Natural da Humanidade (UNESCO, 2012)</li>
+        <li>Sede das Olimpíadas de 2016</li>
+        <li>Importantes praias: Copacabana, Ipanema e Barra</li>
+        <li>Pontos turísticos: Pão de Açúcar, Cristo Redentor, Maracanã</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Economia</h2>
+      <ul>
+        <li>2º maior PIB do Brasil (~R$ 400 bi)</li>
+        <li>Principal setor: serviços e turismo</li>
+        <li>Centro financeiro e cultural importante</li>
+        <li>Porto de grande movimentação</li>
+        <li>Polo de petróleo e gás (Petrobras)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Clima & Natureza</h2>
+      <ul>
+        <li><span>Clima:</span> Tropical oceânico</li>
+        <li><span>Temperatura média:</span> 23°C</li>
+        <li><span>Verão:</span> 35–40°C (dez–mar)</li>
+        <li><span>Inverno:</span> 18–22°C (jun–ago)</li>
+        <li>Floresta Atlântica dentro da cidade</li>
+        <li>Parque Nacional da Tijuca — maior floresta urbana do mundo</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Página informativa sobre o Rio de Janeiro &mdash; Cidade Maravilhosa
+  </footer>
+
+</body>
+</html>
